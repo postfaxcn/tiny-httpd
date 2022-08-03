@@ -69,7 +69,7 @@ fn handle_client(mut socket net.TcpConn, gpath string) {
 		received_line := reader.read_line() or { return }
 		if received_line == '' {
 			if !os.exists(path) {
-				socket.write_string(bad_request(400)) or { return }
+				socket.write_string(bad_request(404)) or { return }
 			} else {
 				t := os.read_bytes(path) or {
 					socket.write_string(bad_request(500)) or { return }
@@ -95,11 +95,11 @@ fn handle_client(mut socket net.TcpConn, gpath string) {
 
 fn bad_request(code int) string {
 	match code {
-		400 {
-			return 'HTTP/1.1 400 BAD REQUEST\r\n\r\n'
+		404 {
+			return 'HTTP/1.1 404 NOT FOUND\r\n\r\n404 NOT FOUND\r\n'
 		}
 		500 {
-			return 'HTTP/1.1 500 Internal Server Error\r\n\r\n'
+			return 'HTTP/1.1 500 Internal Server Error\r\n\r\n500 Internal Server Error\r\n'
 		}
 		else {
 			return 'UNKNOW\r\n\r\n'
