@@ -4,7 +4,7 @@
 ## 编译运行
 请先安装好 [vlang](https://github.com/vlang/v#installing-v---from-source-preferred-method) 语言
 
-执行  `v tiny.v`
+编译  `v tiny.v`
 
 使用 `tiny start -l 8080 -p dist`
 
